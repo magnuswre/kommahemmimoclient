@@ -29,8 +29,8 @@ export default function Form({ baseUrl }) {
                     imageUrl
                });
                console.log(res.data);
-               setDestinations([...destinations, res.data]); 
-               setFormVisible(false); 
+               setDestinations([...destinations, res.data]);
+               setFormVisible(false);
                navigate('/my-destinations/');
           } catch (err) {
                console.log(err);
@@ -56,6 +56,10 @@ export default function Form({ baseUrl }) {
                               <input value={imageUrl} onChange={(e) => { setImageUrl(e.target.value) }} placeholder='Enter image url' />
                          </div>
                          <button type="submit">Submit</button>
+                      {/* '   <button onClick={() => {
+                              setFormVisible(false);
+                              navigate('/my-destinations/');
+                         }}>Cancel</button>' */}
                     </form>
                </div>
           ) : null

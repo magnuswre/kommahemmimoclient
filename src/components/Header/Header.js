@@ -1,11 +1,13 @@
 import React, { useContext, useState } from 'react'
 // import axios from 'axios';
 import './header.css'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import axios from 'axios'
 import { UserContext } from '../../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header({ baseUrl }) {
+  const navigate = useNavigate()
   const [signupSuccess, setSignupSuccess] = useState(false)
   // const [loggedIn, setLoggedIn] = useState(false)
   const [modal, setModal] = useState(false)
@@ -44,6 +46,7 @@ export default function Header({ baseUrl }) {
         setIsLoggedIn(true)
         setModal(false)
         localStorage.setItem('user', JSON.stringify(res.data));
+        navigate('/my-destinations')
       })
       .catch(err => {
         console.log(err)
@@ -56,6 +59,8 @@ export default function Header({ baseUrl }) {
     setIsLoggedIn(false)
     console.log("logged out")
     localStorage.removeItem('user');
+    navigate('/')
+    
   }
 
 
